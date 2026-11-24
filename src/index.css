@@ -1,0 +1,95 @@
+@import "tailwindcss";
+
+/* 
+ * Custom Scrollbar:
+ * - Transparent track (removes distracting white track)
+ * - Thumb fades to transparent when idle for 2 seconds
+ * - Thumb appears immediately on scrolling
+ */
+
+html, body {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+
+html.is-scrolling, body.is-scrolling {
+  scrollbar-color: rgba(255, 255, 255, 0.35) transparent;
+}
+
+/* WebKit (Chrome, Safari, Edge, Mobile WebKit) */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: 9999px;
+  transition: background-color 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* While scrolling is active (via scroll listener) */
+html.is-scrolling ::-webkit-scrollbar-thumb,
+body.is-scrolling ::-webkit-scrollbar-thumb,
+.is-scrolling::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.38) !important;
+}
+
+html.is-scrolling ::-webkit-scrollbar-thumb:hover,
+body.is-scrolling ::-webkit-scrollbar-thumb:hover,
+.is-scrolling::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(245, 158, 11, 0.7) !important;
+}
+
+/* Hide product quick-jump cards on mobile portrait (< 768px) and mobile landscape (height < 520px) */
+.product-quick-jump {
+  display: none;
+}
+
+@media (min-width: 768px) and (min-height: 520px) {
+  .product-quick-jump {
+    display: grid;
+  }
+}
+
+@layer utilities {
+  @keyframes phone-vibrate {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    15% { transform: translate(-3px, 2px) rotate(-1deg); }
+    30% { transform: translate(3px, -2px) rotate(1deg); }
+    45% { transform: translate(-3px, -1px) rotate(-1deg); }
+    60% { transform: translate(3px, 2px) rotate(1deg); }
+    75% { transform: translate(-2px, -2px) rotate(-0.5deg); }
+    90% { transform: translate(2px, 1px) rotate(0.5deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+  }
+
+  @keyframes dumbbell-shake {
+    0% { transform: translateY(0) rotate(0deg); }
+    25% { transform: translateY(-16px) rotate(-4deg); }
+    50% { transform: translateY(12px) rotate(3deg); }
+    75% { transform: translateY(-10px) rotate(-2deg); }
+    100% { transform: translateY(0) rotate(0deg); }
+  }
+
+  @keyframes siren-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.85; transform: scale(1.03); }
+  }
+
+  .animate-vibrate {
+    animation: phone-vibrate 0.12s linear infinite;
+  }
+
+  .animate-dumbbell-swing {
+    animation: dumbbell-shake 0.25s ease-in-out infinite;
+  }
+
+  .animate-siren-ring {
+    animation: siren-pulse 0.4s ease-in-out infinite;
+  }
+}

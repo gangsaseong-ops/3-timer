@@ -1,0 +1,6 @@
+{
+  "name": "절대 안 깨고 못 배기는 알람시계 3종",
+  "description": "지하철 스텔스 진동 보조배터리부터 30회 덤벨 흔들기, 직립 감지 카펫까지! 아침 기상과 출퇴근길을 완벽히 책임지는 개성 강한 이색 알람시계 3종",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
